@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-sm-12">
+    <img [src]="recpie.imagePath" alt="{{recpie.name}}" class="img-responsive"
+    style="max-height:250px;">
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <h2>{{recpie.name}}</h2>
+  </div>
+</div>
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  Manage Recepie
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" (click)="onAddToShoppingList()">To shopping list</a>
+    <a class="dropdown-item" (click)="onEdit()">Edit list</a>
+    <a class="dropdown-item" (click)="onDelete()">Delete list</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    {{recpie.description}}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let ingrediant of recpie.ingrediants">
+        {{ingrediant.name}} - {{ingrediant.amount}}
+      </li>
+    </ul>
+  </div>
+</div>

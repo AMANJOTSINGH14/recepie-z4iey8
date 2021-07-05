@@ -1,0 +1,15 @@
+  
+  <a style="cursor:pointer;" class="list-group-item clearfix"
+  [routerLink]="[index]">
+
+    <div class="float-left">
+<h3 class="list-group-item-heading">{{recepie.name}}</h3>
+<p class="list-group-item-text">{{recepie.description}} </p>
+    </div>
+    <span class="float-right">
+      <img [src]="recepie.imagePath" alt="{{recepie.name}}" class="" style="max-height:50px;">
+    </span>
+  
+  </a>
+ 
+  

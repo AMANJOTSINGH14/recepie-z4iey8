@@ -1,0 +1,49 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container-fluid">
+		<a class="navbar-brand">FOOD SHOP</a>
+		<button *ngIf="isAuthenticate"
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+		<div id="navbarSupportedContent">
+			<ul class="navbar-nav">
+				<li class="nav-item active" *ngIf="isAuthenticate">
+					<a class="nav-link" [routerLink]="['/recipes']">Recepie <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item"*ngIf="!isAuthenticate">
+					<a class="nav-link " [routerLink]="['/auth']" >Authentication</a>
+				</li>
+				<li class="nav-item"*ngIf="isAuthenticate">
+					<a class="nav-link " [routerLink]="['/shopping']" >Shopping List</a>
+				</li>
+			</ul>
+		</div>
+		<ul class=" navbar-nav ml-auto m">
+			<li *ngIf="isAuthenticate" style="cursor:pointer"(click)="onlogOut()" ><a>Logout </a></li></ul>
+			
+				<div class="">
+					<ul class=" navbar-nav ml-auto"*ngIf="isAuthenticate">
+						<li class="nav-item dropdown appdropdown"*ngIf="isAuthenticate">
+							<a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+								data-toggle="dropdown">
+								Dropdown
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown"*ngIf="isAuthenticate">
+								<li><a class="dropdown-item" style="cursor:pointer" (click)="onStoreData()">SAVE DATA</a></li>
+								<li><a class="dropdown-item" (click)="onFetchData()">FETCH DATA</a></li>
+								<li><a class="dropdown-item" href="#">SIGN OUT</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				</div>
+	</nav>
