@@ -15,7 +15,8 @@ export interface Authg {
 @Injectable()
 export class AuthService {
  private expireToken:any;
-  user = new BehaviorSubject<User>(null);
+ clicked=new Subject<boolean>();
+ user = new BehaviorSubject<User>(null);
   constructor(private http: HttpClient) {}
   signup(email: string, password: string) {
     return this.http

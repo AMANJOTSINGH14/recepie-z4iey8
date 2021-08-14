@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Authg, AuthService } from './auth.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class AuthenticationComponent implements OnInit {
 isLogin=false;
 isLoading=false;
 error:string=null;
+
   constructor(private auth:AuthService , private router:Router) { }
 
   ngOnInit():void{
@@ -21,6 +22,7 @@ sign(){
   console.log(this.isLogin);
   this.isLogin=!this.isLogin;
   console.log(this.isLogin)
+  this.auth.clicked.next(this.isLogin)
 }
 OnSubmit(form:NgForm){
 const email=form.value.email;
