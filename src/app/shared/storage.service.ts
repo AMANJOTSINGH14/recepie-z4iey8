@@ -13,12 +13,21 @@ export class StorageService {
     private service: recepieservice,
     private auth: AuthService
   ) {}
+userId:string
+  onData(){
+   return this.auth.user.subscribe(data=>{
+    if(!data){
+      return null
+    } 
+    this.userId=data.id
+    })
+  }
   onStoringData() {
     const recipelist = this.service.getRecipe();
 
     this.http
       .put(
-        'https://recipe-59dc9-default-rtdb.firebaseio.com/recipelist.json',
+        'https://recipe-59dc9-default-rtdb.firebaseio.com/'+this.userId+'recipelist.json',
         recipelist
       )
       .subscribe(h => {
@@ -28,10 +37,14 @@ export class StorageService {
   onFetchingData() {
     return this.http
       .get<Recepie[]>(
-        'https://recipe-59dc9-default-rtdb.firebaseio.com/recipelist.json'
+        'https://recipe-59dc9-default-rtdb.firebaseio.com/'+this.userId+'recipelist.json'
       )
       .pipe(
-        map(recipe => {
+        map(recipe => 
+          {if(!recipe){
+            return recipe=[]
+          }
+
           return recipe.map(recipe => {
             return {
               ...recipe,

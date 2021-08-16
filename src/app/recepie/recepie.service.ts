@@ -8,14 +8,14 @@ export class recepieservice{
  recepieselected = new Subject<Recepie>();
 changed = new Subject<Recepie[]>();
  private recepies:Recepie[]=[
-new Recepie('paneer da pakoda','swaad bada' , 'https://cdn.pixabay.com/photo/2020/03/13/20/16/paneer-tikka-4929034_960_720.jpg',
-[new Ingrediant ('pakoda',5),
-new Ingrediant ('french',1.5)
-]),
-new Recepie('chicken','kithon shuru kraan' , 'https://cdn.pixabay.com/photo/2017/04/04/17/33/food-2202358__340.jpg',
-[new Ingrediant ('meat',1),
-new Ingrediant ('french',1.5)
-])
+// new Recepie('paneer da pakoda','swaad bada' , 'https://cdn.pixabay.com/photo/2020/03/13/20/16/paneer-tikka-4929034_960_720.jpg',
+// [new Ingrediant ('pakoda',5),
+// new Ingrediant ('french',1.5)
+// ]),
+// new Recepie('chicken','kithon shuru kraan' , 'https://cdn.pixabay.com/photo/2017/04/04/17/33/food-2202358__340.jpg',
+// [new Ingrediant ('meat',1),
+// new Ingrediant ('french',1.5)
+// ])
 ];
 constructor(private slservice:shoppinglistservice){}
 getRecipe(){
@@ -43,5 +43,9 @@ this.changed.next(this.recepies.slice())
 onDeleteRecipe(i:number){
 this.recepies.splice(i,1)
 this.changed.next(this.recepies.slice())
+}
+onEmptyRecipe(){
+  this.recepies=[]
+  this.changed.next(this.recepies.slice())
 }
 }
