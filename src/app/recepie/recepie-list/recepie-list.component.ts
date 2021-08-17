@@ -11,27 +11,30 @@ import { recepieservice } from '../recepie.service';
   templateUrl: './recepie-list.component.html',
   
 })
-export class RecepieListComponent implements OnInit,OnDestroy{
+export class RecepieListComponent implements OnInit{
 
  recepies:Recepie[]
 unsub:Subscription
   constructor(private recepieSERVICE:recepieservice , private router: Router , private route:ActivatedRoute , private se:StorageService) { }
 
   ngOnInit() {
-    this.unsub=this.se.onData()
-    this.se.onFetchingData().subscribe();
+    // this.unsub=this.se.onData()
+    // this.se.onFetchingData().subscribe();
     this.recepies=this.recepieSERVICE.getRecipe()
-  this.recepieSERVICE.changed.subscribe(
+  console.log(this.recepies,'list')
+    this.recepieSERVICE.changed.subscribe(
     (recip:Recepie[]) => {
     
     this.recepies=recip
-    });
+    console.log(this.recepies,'list')  
+  });
 
 }
 onNewRecipe(){
 this.router.navigate(['new'] , {relativeTo:this.route});
 }
-ngOnDestroy(){
-  this.unsub.unsubscribe()
-}
+// ngOnDestroy(){
+//   console.log('destroy recipe')
+//   this.unsub.unsubscribe()
+// }
 }

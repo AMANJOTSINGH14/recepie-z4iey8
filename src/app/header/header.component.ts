@@ -22,7 +22,7 @@ if(!this.isAuthenticate){
 this.router.navigate(['/auth'])
 
 }
-console.log(!res);
+console.log(!res,'res');
 console.log(!!res);
 })
 this.auth.clicked.subscribe(data=>{
@@ -42,6 +42,7 @@ onFetchData(){
   this.service.onFetchingData().subscribe();
 }
 ngOnDestroy(){
+  console.log('destroy')
   this.userSub.unsubscribe();
 }
 }
