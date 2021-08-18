@@ -57,6 +57,7 @@ export class RecipeEditComponent implements OnInit, DeactivateguardService {
     } else {
       this.recepieservice.onAddRecipe(this.recipeForm.value);
     }
+    alert(' Kindly open dropdown and click "SAVE DATA" to confirm your save ')
     this.onCancel();
   }
   initform() {
