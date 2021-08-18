@@ -8,6 +8,7 @@ import { RecepieDetailComponent } from './recepie/recepie-detail/recepie-detail.
 import { RecipeEditComponent } from './recepie/recipe-edit/recipe-edit.component';
 import { RecipeResolverService } from './recepie/recipe-resolver.service';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { DeactivateguardService } from './recepie/recipe-edit/deactivate-guard.service';
 const approute: Routes = [
  {
     path: 'recipes',
@@ -16,7 +17,7 @@ const approute: Routes = [
       { path: '', component: RecipestartedComponent },
       { path: 'new', component: RecipeEditComponent },
       { path: ':id', component: RecepieDetailComponent, resolve:[RecipeResolverService]},
-      { path: ':id/edit', component: RecipeEditComponent , resolve:[RecipeResolverService] }
+      { path: ':id/edit', component: RecipeEditComponent , resolve:[RecipeResolverService] , canDeactivate: [DeactivateguardService]}
     ]
   },
   { path: 'shopping', component: ShoppingListComponent },

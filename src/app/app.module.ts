@@ -24,6 +24,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { AuthService } from './authentication/auth.service';
 import { LoadingComponent } from './shared/loading/loading.component';
 import { AuthInterceptorService } from './authentication/auth-interceptor.service';
+import { DeactivateguardService } from './recepie/recipe-edit/deactivate-guard.service';
 
 
 
@@ -32,6 +33,6 @@ import { AuthInterceptorService } from './authentication/auth-interceptor.servic
   imports:      [ BrowserModule, FormsModule ,HttpClientModule ,approutingModule, ReactiveFormsModule],
   declarations: [ AppComponent, HelloComponent, HeaderComponent,  RecepieComponent, RecepieDetailComponent, RecepieListComponent, RecepieItemComponent , ShoppingListComponent, ShoppingEditComponent,dropdown, RecipestartedComponent, RecipeEditComponent, AuthenticationComponent, LoadingComponent ],
   bootstrap:    [ AppComponent ],
-  providers:[shoppinglistservice,recepieservice, StorageService, RecipeResolverService,AuthService, {provide:HTTP_INTERCEPTORS, useClass : AuthInterceptorService , multi:true}]
+  providers:[shoppinglistservice,recepieservice, StorageService, RecipeResolverService,AuthService, DeactivateguardService,{provide:HTTP_INTERCEPTORS, useClass : AuthInterceptorService , multi:true}]
 })
 export class AppModule { }
