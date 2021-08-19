@@ -11,6 +11,7 @@ import { DeactivateguardService } from './deactivate-guard.service';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit, DeactivateguardService {
+ alert=false
   changed=false
   recepieImgePath = '';
   recepieDescription = '';
@@ -26,11 +27,13 @@ export class RecipeEditComponent implements OnInit, DeactivateguardService {
     private recepieservice: recepieservice
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.alert=true
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.editMode = params['id'] != null;
       this.initform();
+     
     });
   }
   onDeleteIngredient(index: number) {
@@ -48,16 +51,20 @@ export class RecipeEditComponent implements OnInit, DeactivateguardService {
     );
   }
   onCancel() {
+    
     this.router.navigate(['../'], { relativeTo: this.route });
+    
   }
+  
   onSubmit() {
+ 
     this.changed=true
     if (this.editMode) {
       this.recepieservice.onUpdateRecipe(this.recipeForm.value, this.id);
     } else {
       this.recepieservice.onAddRecipe(this.recipeForm.value);
     }
-    alert(' Kindly open dropdown and click "SAVE DATA" to confirm your save ')
+
     this.onCancel();
   }
   initform() {
@@ -92,6 +99,9 @@ export class RecipeEditComponent implements OnInit, DeactivateguardService {
       ingrediants: recipeIngrediant
     });
   }
+  OnHandle(){
+    this.alert=false
+  }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     console.log(this.recipeName,'ek')
     console.log(this.recipeForm.controls.ingrediants.dirty)
@@ -101,6 +111,7 @@ export class RecipeEditComponent implements OnInit, DeactivateguardService {
     ) {
       return confirm('do u want to save changes?');
     } 
+   
     else {
       return true;
     }
