@@ -57,7 +57,7 @@ export class RecipeEditComponent implements OnInit, DeactivateguardService {
   }
   
   onSubmit() {
- 
+
     this.changed=true
     if (this.editMode) {
       this.recepieservice.onUpdateRecipe(this.recipeForm.value, this.id);
@@ -104,14 +104,13 @@ export class RecipeEditComponent implements OnInit, DeactivateguardService {
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     console.log(this.recipeName,'ek')
-    console.log(this.recipeForm.controls.ingrediants.dirty)
+    console.log(this.recipeForm.value['name'])
     if (
       (this.recepieImgePath !== this.recipeForm.value['imagePath'] ||
         this.recipeName !== this.recipeForm.value['name'] || this.recepieDescription!==this.recipeForm.value['description'] || this.recipeForm.controls.ingrediants.dirty)&& !this.changed
     ) {
       return confirm('do u want to save changes?');
     } 
-   
     else {
       return true;
     }

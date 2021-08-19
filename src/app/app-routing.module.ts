@@ -15,7 +15,7 @@ const approute: Routes = [
     component: RecepieComponent,
     children: [
       { path: '', component: RecipestartedComponent },
-      { path: 'new', component: RecipeEditComponent },
+      { path: 'new', component: RecipeEditComponent ,canDeactivate: [DeactivateguardService]},
       { path: ':id', component: RecepieDetailComponent, resolve:[RecipeResolverService]},
       { path: ':id/edit', component: RecipeEditComponent , resolve:[RecipeResolverService] , canDeactivate: [DeactivateguardService]}
     ]
